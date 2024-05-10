@@ -1,0 +1,14 @@
+{
+  "name": "wheater",
+  "version": "1.0.0",
+  "description": "Web de clima con js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mifaro and Niko",
+  "license": "ISC",
+  "dependencies": {
+    "weather-js": "^2.0.0"
+  }
+}
