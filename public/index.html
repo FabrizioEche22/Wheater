@@ -4,16 +4,23 @@
   <title>Clima</title>
 </head>
 <body>
-  <p onclick="buscarClima()">buscar lima</p>
+  <input type="text" id="input">
+  <p onclick="buscarClima()">Buscar Clima</p>
   <h1 id="location">Nombre: </h1>
   <h1 id="temperatura">Temperatura: </h1>
 
   <script>
     function buscarClima() {
-      fetch('buscar').then(response => response.json()).then(data => {
-        document.getElementById('location').textContent = `Nombre: ${data.nombre}`
-        document.getElementById('temperatura').textContent = `Temperatura: ${data.temperatura}`
-      }).catch(error => console.error('Error de clima'))
+      let ciudad = document.getElementById('input').value;
+      let url = '/buscar?ciudad=' + encodeURIComponent(ciudad); // Construye la URL correctamente
+
+      fetch(url) // Utiliza la variable 'url' en la solicitud fetch
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('location').textContent = `Nombre: ${data.nombre}`
+          document.getElementById('temperatura').textContent = `Temperatura: ${data.temperatura}`
+        })
+        .catch(error => console.error('Error de clima'))
     }
   </script>
 </body>
