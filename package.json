@@ -9,6 +9,7 @@
   "author": "Mifaro and Niko",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.19.2",
     "weather-js": "^2.0.0"
   }
 }

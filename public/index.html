@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Clima</title>
+</head>
+<body>
+  <p onclick="buscarClima()">buscar lima</p>
+  <h1 id="location">Nombre: </h1>
+  <h1 id="temperatura">Temperatura: </h1>
+
+  <script>
+    function buscarClima() {
+      fetch('buscar').then(response => response.json()).then(data => {
+        document.getElementById('location').textContent = `Nombre: ${data.nombre}`
+        document.getElementById('temperatura').textContent = `Temperatura: ${data.temperatura}`
+      }).catch(error => console.error('Error de clima'))
+    }
+  </script>
+</body>
+</html>

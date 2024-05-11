@@ -1,20 +1,27 @@
 const weather = require('weather-js');
+const express = require('express');
+const app = express();
+const PORT = 3000;
 
-const data = {
-  ubicacion: "Lima",
-}
+app.use(express.static('public'));
 
-weather.find({
-    search: data.ubicacion,
+app.get('/buscar', (req, res) => {
+  weather.find({
+    search: "Lima",
     degreeType: 'C',
   },
-
-  function(err, result) {
-    if (err) {
-      console.log(err);
-    } else {
-      let nombre = result[0].location.name;
-      let temperatura = result[0].current.temperature;
-      console.log(`Ciudad: ${nombre}\nTemperatura: ${temperatura}`);
-    }
+  
+  function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        let nombre = result[0].location?.name || 'Nada';
+        let temperatura = result[0].current?.temperature || 'Nada';
+        res.json({ nombre, temperatura })
+      }
   });
+})
+
+app.listen(PORT, () => {
+  console.log('Servidor en el puerto '+ PORT);
+})
