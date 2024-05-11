@@ -5,12 +5,16 @@ const data = {
 }
 
 weather.find({
-  search: data.ubicacion,
-  degreeType: 'C',
-},
+    search: data.ubicacion,
+    degreeType: 'C',
+  },
 
   function(err, result) {
-    if (err) console.log(err);
-    let resultadoFinal = JSON.stringify(result, null, 2);
-    console.log(resultadoFinal);
+    if (err) {
+      console.log(err);
+    } else {
+      let nombre = result[0].location.name;
+      let temperatura = result[0].current.temperature;
+      console.log(`Ciudad: ${nombre}\nTemperatura: ${temperatura}`);
+    }
   });
