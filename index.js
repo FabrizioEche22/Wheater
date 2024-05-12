@@ -18,9 +18,9 @@ app.get('/buscar', (req, res) => {
         console.log(err);
         res.status(500).send('Error interno del servidor');
       } else {
-        let nombre = result[0].location?.name || 'Nada';
-        let temperatura = result[0].current?.temperature || 'Nada';
-        res.json({ nombre, temperatura })
+        let nombre = result[0].location?.name;
+        let temperatura = result[0].current?.temperature;
+        res.json({ nombre, temperatura });
       }
   });
 })
