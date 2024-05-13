@@ -79,6 +79,7 @@
           document.getElementById('location').textContent = `${data.nombre}` //Datos
           document.getElementById('temperatura').textContent = `${data.temperatura}º`
           document.getElementById('imageR').src = `${data.image}`
+          document.getElementById('p').textContent = `${data.p}`
         })
         .catch(error => console.error('Error de clima'))
     }

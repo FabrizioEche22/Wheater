@@ -20,8 +20,9 @@ app.get('/buscar', (req, res) => {
         let nombre = result[0].location?.name;
         let temperatura = result[0].current?.temperature;
         let image = result[0].current?.imageUrl;
+        let p = result[0].current?.skytext;
 
-        res.json({ nombre, temperatura, image });
+        res.json({ nombre, temperatura, image, p });
       }
   });
 })
