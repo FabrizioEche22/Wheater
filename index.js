@@ -19,9 +19,9 @@ app.get('/buscar', (req, res) => {
       } else {
         let nombre = result[0].location?.name;
         let temperatura = result[0].current?.temperature;
-        let datos = result[0].current?.date;
+        let image = result[0].location?.imagerelativeurl;
 
-        res.json({ nombre, temperatura, datos });
+        res.json({ nombre, temperatura, image });
       }
   });
 })
