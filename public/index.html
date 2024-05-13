@@ -1,16 +1,73 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <title>Clima</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans+Thai+Looped:wght@100;200;300;400;500;600;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+  <title>Weather</title>
 </head>
 <body>
+  <header>
+    <div class="objetos">
+      <div class="inputBusqueda">
+        <input type="text" placeholder="Buscar Ciudad" id="input">
+        <div class="btnSend" onclick="buscarClima()">
+          <img src="./imgs/search.svg" alt="">
+        </div>
+      </div>
+      <div class="config">
+        <img src="./imgs/menu.svg" alt="" id="icon">
+        <!-- <div class="listConfig">
+          <a href="">
+            <img src="" alt="">
+            <p>Config1</p>
+          </a>
+          <a href="">
+            <img src="" alt="">
+            <p>Config1</p>
+          </a>
+          <a href="">
+            <img src="" alt="">
+            <p>Config1</p>
+          </a>
+        </div> -->
+      </div>
+    </div>
+  </header>
 
-  <!-- Aqui estan los datos principales del npm, como tal estos son los principales y si, pueden ser metidos en un div y todo eso. -->
-  <input type="text" id="input">
-  <p onclick="buscarClima()">Buscar Clima</p>
-  <h1 id="location">Nombre: </h1>
-  <h1 id="temperatura">Temperatura: </h1>
-
+  <main>
+    <section>
+      <div class="weatherBox">
+        <div class="infoTitle">
+          <img src="./imgs/location.svg" alt="">
+          <h1 id="location">Lima, Perú</h1>
+        </div>
+        <div class="imgR">
+          <img src="./anim/nube.gif" alt="" id="imageR">
+        </div>
+        <h1 id="temperatura">20º</h1>
+        <p id="p">Parcialmente Nublado</p>
+        <div class="moreInfo">
+          <p>Más detalles</p>
+          <img src="./imgs/flechita.svg" alt="">
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="links">
+      <li>
+        <img src="./imgs/github.svg">
+        <p href="#">Github</p>
+      </li>
+    </div>
+  </footer>
   <script>
     function buscarClima() {
       let ciudad = document.getElementById('input').value;
@@ -19,8 +76,9 @@
       fetch(url) // Utiliza la variable 'url' en la solicitud fetch, solicitando los datos del js papu
         .then(response => response.json())
         .then(data => {
-          document.getElementById('location').textContent = `Nombre: ${data.nombre}` //Datos
-          document.getElementById('temperatura').textContent = `Temperatura: ${data.temperatura}`
+          document.getElementById('location').textContent = `${data.nombre}` //Datos
+          document.getElementById('temperatura').textContent = `${data.temperatura}º`
+          document.getElementById('p').textContent = `${data.datos}`
         })
         .catch(error => console.error('Error de clima'))
     }

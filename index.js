@@ -7,7 +7,6 @@ app.use(express.static('public'));
 
 app.get('/buscar', (req, res) => {
   const ciudad = req.query.ciudad;
-  console.log(ciudad)
   weather.find({
     search: ciudad,
     degreeType: 'C',
@@ -20,11 +19,13 @@ app.get('/buscar', (req, res) => {
       } else {
         let nombre = result[0].location?.name;
         let temperatura = result[0].current?.temperature;
-        res.json({ nombre, temperatura });
+        let datos = result[0].current?.date;
+
+        res.json({ nombre, temperatura, datos });
       }
   });
 })
 
 app.listen(PORT, () => {
-  console.log('Servidor en el puerto '+ PORT);
+  console.log(`Servidor iniciado en: http:localhost:${PORT}`);
 })

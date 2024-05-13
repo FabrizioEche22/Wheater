@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Clima</title>
+</head>
+<body>
+
+  <!-- Aqui estan los datos principales del npm, como tal estos son los principales y si, pueden ser metidos en un div y todo eso. -->
+  <input type="text" id="input">
+  <p onclick="buscarClima()">Buscar Clima</p>
+  <h1 id="location">Nombre: </h1>
+  <h1 id="temperatura">Temperatura: </h1>
+
+  <script>
+    function buscarClima() {
+      let ciudad = document.getElementById('input').value;
+      let url = '/buscar?ciudad=' + encodeURIComponent(ciudad); // Construye la URL correctamente
+
+      fetch(url) // Utiliza la variable 'url' en la solicitud fetch, solicitando los datos del js papu
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('location').textContent = `Nombre: ${data.nombre}` //Datos
+          document.getElementById('temperatura').textContent = `Temperatura: ${data.temperatura}`
+        })
+        .catch(error => console.error('Error de clima'))
+    }
+  </script>
+</body>
+</html>
