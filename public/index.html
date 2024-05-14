@@ -23,40 +23,57 @@
         </div>
       </div>
       <div class="config">
-        <img src="./imgs/menu.svg" alt="" id="icon">
-        <!-- <div class="listConfig">
-          <a href="">
-            <img src="" alt="">
-            <p>Config1</p>
-          </a>
-          <a href="">
-            <img src="" alt="">
-            <p>Config1</p>
-          </a>
-          <a href="">
-            <img src="" alt="">
-            <p>Config1</p>
-          </a>
-        </div> -->
+        <div class="icon">
+          <img src="./imgs/gear.svg" alt="" id="icon" onclick="abrirConfig()">
+        </div>
+        <div class="listConfig" style="display: none;" id="config">
+          <ul>
+            <li>
+              <p>Temperatura</p>
+              <div class="checkboxCF">
+                <div>
+                  <input type="checkbox" checked disabled id="c-temp"><p>Cº</p>
+                </div>
+                <div>
+                  <input type="checkbox" id="f-temp"><p>Fº</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </header>
 
   <main>
     <section>
-      <div class="weatherBox">
+      <div class="weatherBox" style="display: none;" id="box">
         <div class="infoTitle">
           <img src="./imgs/location.svg" alt="">
-          <h1 id="location">Lima, Perú</h1>
+          <h1 id="location"></h1>
         </div>
         <div class="imgR">
-          <img src="./anim/nube.gif" alt="" id="imageR">
+          <img src="" alt="" id="imageR">
         </div>
-        <h1 id="temperatura">20º</h1>
-        <p id="p">Parcialmente Nublado</p>
+        <h1 id="temperatura"></h1>
+        <p id="p"></p>
         <div class="moreInfo">
           <p>Más detalles</p>
           <img src="./imgs/flechita.svg" alt="">
+        </div>
+      </div>
+      <div class="inicio" id="inicio">
+        <h1>CLIMA</h1>
+        <p>¡Solicita información del clima en cualquier momento de cualquier parte del mundo!</p>
+        <div class="img">
+          <img src="./imgs/sunset-.png" alt="">
+        </div>
+      </div>
+      <div class="notFound" style="display: none;" id="nf">
+        <h1>¡Ops! No encontramos la ciudad que solicitaste</h1>
+        <p>Intenta con otras palabras clave.</p>
+        <div class="img">
+          <img src="./imgs/research.png" alt="">
         </div>
       </div>
     </section>
@@ -71,8 +88,15 @@
   </footer>
   <script>
     function buscarClima() {
+      let notFound = document.getElementById('nf');
+      notFound.style.display = 'none';
+      let box = document.getElementById('box');
+      box.style.display = 'block';
+      let inicio = document.getElementById('inicio');
+      inicio.style.display = 'none';
+      
       let ciudad = document.getElementById('input').value;
-      let url = '/buscar?ciudad=' + encodeURIComponent(ciudad); // Construye la URL correctamente
+      let url = '/buscar?ciudad=' + encodeURIComponent(ciudad);
 
       fetch(url) // Utiliza la variable 'url' en la solicitud fetch, solicitando los datos del js papu
         .then(response => response.json())
@@ -82,7 +106,11 @@
           document.getElementById('imageR').src = `${data.image}`
           document.getElementById('p').textContent = `${data.p}`
         })
-        .catch(error => console.error('Error de clima'))
+        .catch(error => {
+          let notFound = document.getElementById('nf');
+          notFound.style.display = 'block'
+          box.style.display = 'none';
+        })
     }
   </script>
 </body>

@@ -29,7 +29,7 @@ header {
   align-items: center;
 }
 
-.objetos input {
+.objetos #input {
   width: 100%;
   font-size: 20px;
   border-radius: 10px;
@@ -65,9 +65,44 @@ input:focus {
   filter: brightness(0.7);
 }
 
-.config #icon {
+ #icon {
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
+
+/* div config */
+.listConfig {
+  position: absolute;
+  font-size: 20px;
+  border-radius: 10px;
+  right: 20px;
+  top: 100px;
+  z-index: 20;
+  background: #ffffff3b;
+  backdrop-filter: blur(12px);
+}
+
+.listConfig li {
+  color: black;
+  list-style: none;
+  padding: 20px;
+}
+.listConfig p {
+  margin-bottom: 10px;
+}
+.checkboxCF {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.checkboxCF div {
+  display: flex;
+  gap: 5px;
+  background-color: rgba(255, 255, 255, 0.381);
+  padding: 5px;
+  border-radius: 5px;
+}
+/* div config */
 
 main {
   display: grid;
@@ -83,6 +118,7 @@ section {
   padding: 20px;
   width: 500px;
   border-radius: 20px;
+  z-index: -1;
 }
 
 .infoTitle {
@@ -116,6 +152,36 @@ color: linear-gradient(85deg, rgba(1,137,204,1) 29%, rgba(129,216,248,1) 76%, rg
   right: 50px;
   bottom: 80px;
 }
+
+/* DIV INICIO */
+.inicio {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.inicio h1 {
+  font-size: 50px;
+  font-weight: 700;
+  color: rgb(32, 32, 32);
+}
+.inicio img {
+  height: 300px;
+  width: auto;
+}
+/* DIV INICIO */
+
+/* div notfoun */
+.notFound img {
+  height: 300px;
+  width: auto;
+}
+.notFound .img {
+  display: flex;
+  justify-content: center;
+}
+/* div notfoun */
 
 .moreInfo {
   display: flex;
