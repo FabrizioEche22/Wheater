@@ -23,7 +23,7 @@ try {
           let image = result[0].current?.imageUrl;
           let p = result[0].current?.skytext;
   
-          res.json({ nombre, temperatura, image, p });
+          res.json({ nombre, temperatura, image, p })
         }
     });
   })
