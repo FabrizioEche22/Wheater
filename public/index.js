@@ -21,4 +21,24 @@ function enter(event) {
   }
 }
 
+function temperaturaC() {
+  let c = document.getElementById('c-temp');
+  let f = document.getElementById('f-temp');
+  if(c.checked === true) {
+    f.checked = false; 
+    f.disabled = false; 
+    c.disabled = true; 
+  }
+}
+
+function temperaturaF() {
+  let c = document.getElementById('c-temp');
+  let f = document.getElementById('f-temp');
+  if(f.checked === true) {
+    c.checked = false;
+    f.disabled = true
+    c.disabled = false
+  }
+}
+
 document.addEventListener("keydown", enter);
