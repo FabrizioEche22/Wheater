@@ -1,0 +1,24 @@
+{
+  "name": "wheater",
+  "version": "1.0.0",
+  "description": "Web de clima con js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mifaro and Niko",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0",
+    "weather-js": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/FabrizioEche22/Wheater.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FabrizioEche22/Wheater/issues"
+  },
+  "homepage": "https://github.com/FabrizioEche22/Wheater#readme"
+}

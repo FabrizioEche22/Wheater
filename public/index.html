@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans+Thai+Looped:wght@100;200;300;400;500;600;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+  <title>Weather</title>
+  <script src="./index.js"></script>
+</head>
+<body>
+  <header>
+    <div class="objetos">
+      <div class="inputBusqueda">
+        <input type="text" placeholder="Buscar Ciudad" id="input">
+        <div class="btnSend" onclick="buscarClima()">
+          <img src="./imgs/search.svg" alt="">
+        </div>
+      </div>
+      <div class="config">
+        <div class="icon">
+          <img src="./imgs/gear.svg" alt="" id="icon" onclick="abrirConfig()">
+        </div>
+        <div class="listConfig" style="display: none;" id="config">
+          <ul>
+            <li>
+              <p>Temperatura</p>
+              <div class="checkboxCF">
+                <div onclick="temperaturaC()">
+                  <input type="checkbox" checked disabled id="c-temp" ><p>Cº</p>
+                </div>
+                <div onclick="temperaturaF()">
+                  <input type="checkbox" id="f-temp"><p>Fº</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="weatherBox" style="display: none;" id="box">
+        <div class="infoTitle">
+          <img src="./imgs/location.svg" alt="">
+          <h1 id="location"></h1>
+        </div>
+        <div class="imgR">
+          <img src="" alt="" id="imageR">
+        </div>
+        <h1 id="temperatura"></h1>
+        <p id="p"></p>
+        <div class="moreInfo">
+          <p>Más detalles</p>
+          <img src="./imgs/flechita.svg" alt="">
+        </div>
+      </div>
+      <div class="inicio" id="inicio">
+        <h1>CLIMA</h1>
+        <p>¡Solicita información del clima en cualquier momento de cualquier parte del mundo!</p>
+        <div class="img">
+          <img src="./imgs/sunset-.png" alt="">
+        </div>
+      </div>
+      <div class="notFound" style="display: none;" id="nf">
+        <h1>¡Ops! No encontramos la ciudad que solicitaste</h1>
+        <p>Intenta con otras palabras clave.</p>
+        <div class="img">
+          <img src="./imgs/research.png" alt="">
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="links">
+      <li>
+        <img src="./imgs/github.svg">
+        <p href="#">Github</p>
+      </li>
+    </div>
+  </footer>
+  <script>
+    function buscarClima() {
+      let notFound = document.getElementById('nf');
+      notFound.style.display = 'none';
+      let box = document.getElementById('box');
+      box.style.display = 'block';
+      let inicio = document.getElementById('inicio');
+      inicio.style.display = 'none';
+      
+      let ciudad = document.getElementById('input').value;
+      let url = '/buscar?ciudad=' + encodeURIComponent(ciudad);
+
+      fetch(url) // Utiliza la variable 'url' en la solicitud fetch, solicitando los datos del js papu
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('location').textContent = `${data.nombre}` //Datos
+          document.getElementById('temperatura').textContent = `${data.temperatura}º`
+          document.getElementById('imageR').src = `${data.image}`
+          document.getElementById('p').textContent = `${data.p}`
+        })
+        .catch(error => {
+          let notFound = document.getElementById('nf');
+          notFound.style.display = 'block'
+          box.style.display = 'none';
+        })
+    }
+  </script>
+</body>
+</html>
